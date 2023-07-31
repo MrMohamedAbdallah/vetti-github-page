@@ -113,7 +113,7 @@ class Api {
             fieldObject.error = false;
         }
         window.dataLayer.push({
-            event: "lead" + fieldResponse.status,
+            event: "lead_" + fieldResponse.status,
         })
     }
 
