@@ -1,23 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Authenticity</title>
+  <style>
+    input {
+      display: block;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Hello</h1>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5G2CP433LJ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email">
+  </div>
+  <div>
+    <label for="Phone">Phone:</label>
+    <input type="text" id="email">
+  </div>
+  <div>
+    <button type="button" id="btn">Check</button>
+  </div>
 
-      gtag('config', 'G-5G2CP433LJ');
-    </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5G2CP433LJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-    <script src="./index.js"></script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-5G2CP433LJ');
+  </script>
+
+
+  <script type='module'>
+    import Authenticity from "./modules/Api.mjs"
+
+    const ready = (fn) => {
+      if (document.readyState !== 'loading')
+        fn()
+      else
+        document.addEventListener('DOMContentLoaded', fn)
+    }
+
+    const onDocumentReady = () => {
+      let authenticity = new Authenticity(
+        "S4ytrSd5MA",
+        "https://3jvbgwecbuj6yk3xcr3sycyx3u0cioby.lambda-url.us-east-2.on.aws/",
+        "email"
+      );
+
+      authenticity.init('change', JSON.parse(`{"email":"#email","button":"#btn"}`));
+    }
+    ready(onDocumentReady);
+  </script>
+  <script src="./index.js"></script>
 </body>
+
 </html>
